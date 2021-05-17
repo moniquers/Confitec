@@ -1,0 +1,46 @@
+<div>
+    <div class="mt-3">
+        <form [formGroup]="userForm" id="userForm" (ngSubmit)="handleSubmitUser()">
+            <input type="hidden" formControlName="id">
+            <div class="d-flex flex-column">
+                <div class="form-group">
+                    <label for="name">Nome</label>
+                    <input type="text" class="form-control"  id="name" formControlName="name">
+                </div>
+                <div class="form-group">
+                    <label for="lastName">Sobrenome</label>
+                    <input type="text" class="form-control" id="lastName" formControlName="lastName">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail</label>
+                    <input type="email" class="form-control" id="email" formControlName="email">
+                </div>
+                <div class="d-flex flex-row justify-content-between">
+                    <div class="col-5">
+                        <div class="form-group">
+                            <label for="birthdate">Data de nascimento</label>
+                            <p-calendar formControlName="birthdate" inputId="birthdate" appendTo="body"
+                                styleClass="w-100" [monthNavigator]="true" [yearNavigator]="true" yearRange="1900:2030" dateFormat="dd/mm/yy"
+                                inputStyleClass="form-control" locale="pt-BR">
+                            </p-calendar>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-group">
+                            <label for="educationLevel">Escolaridade</label>
+                            <select class="form-control" formControlName="educationLevel">
+                                <option value="0" hidden>Selecione a escolaridade</option>
+                                <option *ngFor="let educationLevel of educationLevelList" [value]="educationLevel.Value">
+                                    {{educationLevel.Key}}</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="text-end m-2">
+                <button class="btn btn-outline-secondary mx-3" [routerLink]="['/users']">Voltar</button>
+                <button type="submit" class="btn btn-success" [disabled]="userForm.invalid">Enviar</button>
+            </div>
+        </form>
+    </div>
+</div>
